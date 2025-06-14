@@ -10,9 +10,7 @@ import {
   TableHead,
   TableRow,
   Button,
-  useTheme,
 } from '@mui/material';
-import { saveAs } from 'file-saver';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 
@@ -32,8 +30,6 @@ interface InvoicePreviewProps {
 }
 
 const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoice }) => {
-  const theme = useTheme();
-
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
     
