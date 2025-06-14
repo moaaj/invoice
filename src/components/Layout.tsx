@@ -19,7 +19,7 @@ import {
   Dashboard as DashboardIcon,
   Receipt as ReceiptIcon,
   People as PeopleIcon,
-  Add as AddIcon,
+  Home as HomeIcon,
 } from '@mui/icons-material';
 import { authService } from '../services/authService';
 
@@ -66,30 +66,36 @@ const Layout: React.FC = () => {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      >
+      <AppBar position="static" color="primary" enableColorOnDark>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Invoicing System
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Invoice System
           </Typography>
-          <Button color="inherit" onClick={handleLogout}>
-            Logout
+          
+          {/* Navigation Buttons */}
+          <Button 
+            color="inherit" 
+            startIcon={<HomeIcon />}
+            onClick={() => navigate('/')}
+            sx={{ mr: 2 }}
+          >
+            Home
+          </Button>
+          <Button 
+            color="inherit" 
+            onClick={() => navigate('/invoices')}
+            sx={{ mr: 2 }}
+          >
+            Invoices
+          </Button>
+          <Button 
+            color="inherit" 
+            onClick={() => navigate('/customers')}
+            sx={{ mr: 2 }}
+          >
+            Customers
           </Button>
         </Toolbar>
       </AppBar>
@@ -134,9 +140,9 @@ const Layout: React.FC = () => {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          minHeight: '100vh',
         }}
       >
-        <Toolbar />
         <Outlet />
       </Box>
     </Box>
